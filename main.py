@@ -19,7 +19,7 @@ tool_bar = Frame(left_frame, width=180, height=185)
 tool_bar.grid(row=2, column=0, padx=5, pady=5)
 
 # Load image to be "edited"
-image = PhotoImage(file="D:\\TERMINALE\\NSI\\PROJET\\QEC_Logo.png")
+image = PhotoImage(file="QEC_Logo.png")
 original_image = image.subsample(3, 3)  # resize image using subsample
 Label(left_frame, image=original_image).grid(row=0, column=0, padx=5, pady=5)
 
