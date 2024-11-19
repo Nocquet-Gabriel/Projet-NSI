@@ -23,14 +23,27 @@ tool_bar.grid(row=2, column=0, padx=5, pady=5)
 
 # Load logo
 image = PhotoImage(file="QEC_Logo.png")
-original_image = image.subsample(3, 3)  # resize image using subsample
+original_image = image.subsample(3, 3)  # resize image 
 Label(left_frame, image=original_image).grid(row=0, column=0, padx=5, pady=5)
 
 # Function to open a new window with a message for solo
 def on_button_solo():
     new_window = Toplevel(root)
     new_window.title("Solo")
+    new_window.geometry("700x600")  # resize window
+    # Load logo
+    logo = PhotoImage(file="QEC_Logo.png")
+    logo_label = Label(new_window, image=logo)
+    logo_label.image = logo  # Keep a reference to avoid garbage collection
+    logo_label.pack(pady=10)
     Label(new_window, text="Choose your difficulty").pack(padx=20, pady=20)
+    # Add new buttons to the new window
+    buttonHard = Button(new_window, text="Hard")
+    buttonHard.pack(pady=10)
+    buttonMedium = Button(new_window, text="Medium")
+    buttonMedium.pack(pady=10)
+    buttonEasy = Button(new_window, text="Easy")
+    buttonEasy.pack(pady=10)
 
 # Function to close the window
 def quit_app():
