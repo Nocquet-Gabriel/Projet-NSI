@@ -1,17 +1,11 @@
-from case import Case
-from jeu import Jeu
-from joueur import Joueur, Ordi
-from personnage import Personnage
-from plateau import Plateau
-from question import Question
-from tkinter import*
+from tkinter import *
 
 root = Tk()  # create root window
 root.title("Qui-est-ce ?")
 root.config(bg="dodgerblue")
 
 # Set the window icon
-#root.iconbitmap('path_to_icon.ico')
+# root.iconbitmap('path_to_icon.ico')
 
 # Create Frame widget
 left_frame = Frame(root, width=200, height=400)
@@ -23,10 +17,12 @@ tool_bar.grid(row=2, column=0, padx=5, pady=5)
 
 # Load logo
 image = PhotoImage(file="QEC_Logo.png")
-original_image = image.subsample(3, 3)  # resize image 
+original_image = image.subsample(3, 3)  # resize image
 Label(left_frame, image=original_image).grid(row=0, column=0, padx=5, pady=5)
 
 # Function to open a new window with a message for solo
+
+
 def on_button_solo():
     new_window = Toplevel(root)
     new_window.title("Solo")
@@ -38,28 +34,42 @@ def on_button_solo():
     logo_label.pack(pady=10)
     Label(new_window, text="Choose your difficulty").pack(padx=20, pady=20)
     # Add new buttons to the new window
-    buttonHard = Button(new_window, text="Hard")
+    buttonHard = Button(new_window, text="Hard", command=not_available)
     buttonHard.pack(pady=10)
-    buttonMedium = Button(new_window, text="Medium")
+    buttonMedium = Button(new_window, text="Medium", command=not_available)
     buttonMedium.pack(pady=10)
     buttonEasy = Button(new_window, text="Easy")
     buttonEasy.pack(pady=10)
 
+# Function to display "Not available yet" message
+
+
+def not_available():
+    new_window = Toplevel(root)
+    new_window.title("Not available")
+    Label(new_window, text="Not available yet").pack(padx=20, pady=20)
+
 # Function to close the window
+
+
 def quit_app():
     root.quit()
 
 # Function to open a new window with a message
+
+
 def on_button_multiplayer():
     new_window = Toplevel(root)
     new_window.title("Multiplayer")
     Label(new_window, text="Multiplayer not available yet").pack(padx=20, pady=20)
 
+
 # Create buttons and place them under the logo
 buttonSolo = Button(left_frame, text="Solo", command=on_button_solo)
 buttonSolo.grid(row=1, column=0, padx=5, pady=5)
 
-buttonMultiplayer = Button(left_frame, text="Multiplayer", command=on_button_multiplayer)
+buttonMultiplayer = Button(
+    left_frame, text="Multiplayer", command=on_button_multiplayer)
 buttonMultiplayer.grid(row=2, column=0, padx=5, pady=5)
 
 quit_button = Button(left_frame, text="Quit", command=quit_app)
