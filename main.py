@@ -50,7 +50,7 @@ def quit_app():
     root.quit()
 
 # Function to open a new window with a message
-def open_button_multiplayer():
+def on_button_multiplayer():
     new_window = Toplevel(root)
     new_window.title("Multiplayer")
     Label(new_window, text="Multiplayer not available yet").pack(padx=20, pady=20)
@@ -59,7 +59,7 @@ def open_button_multiplayer():
 buttonSolo = Button(left_frame, text="Solo", command=on_button_solo)
 buttonSolo.grid(row=1, column=0, padx=5, pady=5)
 
-buttonMultiplayer = Button(left_frame, text="Multiplayer", command=open_button_multiplayer)
+buttonMultiplayer = Button(left_frame, text="Multiplayer", command=on_button_multiplayer)
 buttonMultiplayer.grid(row=2, column=0, padx=5, pady=5)
 
 quit_button = Button(left_frame, text="Quit", command=quit_app)
