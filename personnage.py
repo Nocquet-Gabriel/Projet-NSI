@@ -2,6 +2,7 @@ class Personnage:
     def __init__(self, femme, cheveuxLongs, lunettes, moustache, cheveuxBoucles, cheveuxLisses, chapeau, yeuxBleus,
                  yeuxMarrons, yeuxVerts, peauClaire, peauMate, BouclesOreilles, casquette, bonnet, souriant, jeune, vieux, serieux) -> None:
         self.caracteristiques={}
+        self.cache=False
         self.caracteristiques["femme"]=femme
         self.caracteristiques["cheveuxLongs"]=cheveuxLongs
         self.caracteristiques["lunettes"]=lunettes
@@ -21,3 +22,6 @@ class Personnage:
         self.caracteristiques["jeune"]=jeune
         self.caracteristiques["vieux"]=vieux
         self.caracteristiques["serieux"]=serieux
+
+    def eliminer(self):
+        self.cache=True
