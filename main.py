@@ -48,6 +48,7 @@ def on_button_solo():
 
 def not_available():
     new_window = Toplevel(root)
+    new_window.iconbitmap("QEC_Logo.ico")
     new_window.title("Not available")
     Label(new_window, text="Not available yet").pack(padx=20, pady=20)
 
