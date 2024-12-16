@@ -25,7 +25,8 @@ Label(left_frame, image=original_image).grid(row=0, column=0, padx=5, pady=5)
 
 
 def on_button_solo():
-    new_window = Toplevel(root)
+    new_window = Tk()
+    root.destroy()
     new_window.title("Solo")
     new_window.geometry("700x600")  # resize window
     new_window.iconbitmap("QEC_Logo.ico")
