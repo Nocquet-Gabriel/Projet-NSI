@@ -2,6 +2,7 @@ from tkinter import *
 
 root = Tk()  # create root window
 root.title("Qui-est-ce ?")
+root.iconbitmap("QEC_Logo.ico")
 root.config(bg="dodgerblue")
 
 # Set the window icon
@@ -27,6 +28,7 @@ def on_button_solo():
     new_window = Toplevel(root)
     new_window.title("Solo")
     new_window.geometry("700x600")  # resize window
+    new_window.iconbitmap("QEC_Logo.ico")
     # Load logo
     logo = PhotoImage(file="QEC_Logo.png")
     logo_label = Label(new_window, image=logo)
@@ -61,6 +63,7 @@ def quit_app():
 def on_button_multiplayer():
     new_window = Toplevel(root)
     new_window.title("Multiplayer")
+    new_window.iconbitmap("QEC_Logo.ico")
     Label(new_window, text="Multiplayer not available yet").pack(padx=20, pady=20)
 
 
