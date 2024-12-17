@@ -1,8 +1,9 @@
 class Personnage:
-    def __init__(self, femme, cheveuxLongs, lunettes, moustache, cheveuxBoucles, cheveuxLisses, chapeau, yeuxBleus,
+    def __init__(self, nom:str, femme, cheveuxLongs, lunettes, moustache, cheveuxBoucles, cheveuxLisses, chapeau, yeuxBleus,
                  yeuxMarrons, yeuxVerts, peauClaire, peauMate, BouclesOreilles, casquette, bonnet, souriant, jeune, vieux, serieux) -> None:
         self.caracteristiques={}
         self.cache=False
+        self.nom=nom
         self.caracteristiques["femme"]=femme
         self.caracteristiques["cheveuxLongs"]=cheveuxLongs
         self.caracteristiques["lunettes"]=lunettes
