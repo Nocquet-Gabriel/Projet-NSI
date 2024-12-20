@@ -13,8 +13,8 @@ from plateau import Plateau
 # Instanciation des questions NE PAS TOUCHER POUR LE MOMENT
 
 q1 = Question("Est-ce une femme?", (("femme", True)))
-q2 = Question("a t-il/elle les cheveux longs?", [["cheveuxLongs", True]])
-q3 = Question("porte t-il/elle des lunettes?", [["lunettes", True]])
+q2 = Question("a t-il/elle les cheveux longs?", (("cheveuxLongs", True)))
+q3 = Question("porte t-il/elle des lunettes?", (("lunettes", True)))
 q4 = Question("a-t-il/elle une moustache?", (("moustache", True)))
 q5 = Question("a t-il/elle les cheveux bouclés?",
               (("cheveuxBoucles", True), ("cheveuxLisses", False)))
