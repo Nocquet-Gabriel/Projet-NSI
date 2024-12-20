@@ -2,7 +2,7 @@ from personnage import Personnage
 
 
 class Question:
-    def __init__(self, question: str, caractéristiques: list) -> None:
+    def __init__(self, question: str, caractéristiques: tuple) -> None:
         """créée l'instanciation de classe question : possède 3 attributs : une 
         question de type chaine de caractères, et les caractéristiques visées,
         sous la forme d'un tuple de tuples de la forme 
@@ -23,9 +23,9 @@ class Question:
 
     def answer(self, reponse: bool, personnage: Personnage):
             # début de la boucle pour tous les tuples de caractéristiques
-            for liste in self.caracteristiques:
+            for tuple1 in self.caracteristiques:
                 # On isole la clé et l'effet
-                    for cle,effet in liste:            
+                    for cle,effet in tuple1:            
                         valeurRecherchee = not reponse ^ effet
                         # condition pour isoler les true et false
                         if effet != None:
@@ -40,7 +40,7 @@ class Question:
                                 personnage.cacher()
 
 
-q1 = Question("Est-ce une femme?",([["femme",True]])
+q1 = Question("Est-ce une femme?",(("femme",True)))
 emma = Personnage("Emma",True,True,False,False,False,True,False,True,False,False,True,False,False,False,False,True,True,False,False)
 print(emma.cache)
 
