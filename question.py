@@ -24,26 +24,20 @@ class Question:
     def answer(self, reponse: bool, personnage: Personnage):
             # début de la boucle pour tous les tuples de caractéristiques
             for tuple1 in self.caracteristiques:
-                # On isole la clé et l'effet
-                    for cle,effet in tuple1:            
-                        valeurRecherchee = not reponse ^ effet
-                        # condition pour isoler les true et false
-                        if effet != None:
-                            # Plus Simplement : valeurRecherchee = reponse XNOR effet
-                            # si la valeur de la caractéristique diffère de la valeur attendue, le personnage est éliminé (caché)
-                            if personnage.caracteristiques[cle] != valeurRecherchee:
-                                personnage.cacher()
+                if tuple1!=():
+                    cle=tuple1[0]
+                    effet=tuple1[1]
+                    valeurRecherchee = not reponse ^ effet
+                    # condition pour isoler les true et false
+                    if effet != None:
+                        # Plus Simplement : valeurRecherchee = reponse XNOR effet
+                        # si la valeur de la caractéristique diffère de la valeur attendue, le personnage est éliminé (caché)
+                        if personnage.caracteristiques[cle] != valeurRecherchee:
+                            personnage.cache=True
 
-                        else:
-                            # si la valeur de la caractéristique est True, et que la réponse à la question est True, le personnage est éliminé (caché)
-                            if reponse == True and personnage.caracteristiques[cle]:
-                                personnage.cacher()
+                    else:
+                        # si la valeur de la caractéristique est True, et que la réponse à la question est True, le personnage est éliminé (caché)
+                        if reponse == True and personnage.caracteristiques[cle]:
+                            personnage.cache=True
 
 
-q1 = Question("Est-ce une femme?",(("femme",True)))
-emma = Personnage("Emma",True,True,False,False,False,True,False,True,False,False,True,False,False,False,False,True,True,False,False)
-print(emma.cache)
-
-q1.answer(False,emma)
-
-print(emma.cache)

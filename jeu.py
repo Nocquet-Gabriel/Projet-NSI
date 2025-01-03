@@ -1,3 +1,4 @@
+from question import Question
 class Jeu:
     def __init__(self,difficulte:int,joueur1,joueur2) -> None:
         self.difficulte = difficulte
