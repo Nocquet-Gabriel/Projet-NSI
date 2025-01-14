@@ -20,6 +20,7 @@ class Question:
         agit négativement"""
         self.question = question
         self.caracteristiques = caractéristiques
+        self.answered=False
 
     def answer(self, reponse: bool, personnage: Personnage):
             # début de la boucle pour tous les tuples de caractéristiques
@@ -39,5 +40,7 @@ class Question:
                         # si la valeur de la caractéristique est True, et que la réponse à la question est True, le personnage est éliminé (caché)
                         if reponse == True and personnage.caracteristiques[cle]:
                             personnage.cache=True
-
-
+            self.answered=True
+    def correspond(self):
+        if ... and self.answered==False:
+            pass
