@@ -1,6 +1,6 @@
 
 from tkinter import *
-
+from PIL import Image, ImageTk
 from joueur import Joueur
 from case import Case
 from personnage import Personnage
@@ -41,14 +41,22 @@ def on_button_solo():
     logo_label.image = logo  # Keep a reference to avoid garbage collection
     logo_label.pack(pady=10)
     Label(new_window, text="Choose your difficulty").pack(padx=20, pady=20)
-    # Add new buttons to the new window
 
-    buttonHard = Button(new_window, text="Hard", command=not_available)
-    buttonHard.pack(pady=10)
-    buttonMedium = Button(new_window, text="Medium", command=not_available)
-    buttonMedium.pack(pady=10)
+    # Add new buttons to the new window
     buttonEasy = Button(new_window, text="Easy", command=open_easy_window)
     buttonEasy.pack(pady=10)
+    buttonMedium = Button(new_window, text="Medium", command=not_available)
+    buttonMedium.pack(pady=10)
+    buttonHard = Button(new_window, text="Hard", command=not_available)
+    buttonHard.pack(pady=10)
+
+
+def toggle_case(event):
+    button = event.widget
+    if button["bg"] == "SystemButtonFace":
+        button["bg"] = "dodgerblue"
+    else:
+        button["bg"] = "SystemButtonFace"
 
 
 def open_easy_window():
@@ -59,14 +67,24 @@ def open_easy_window():
     cases_frame = Frame(easy_window)
     cases_frame.pack(pady=10)
 
-    # Create 24 cases (buttons) and add them to the frame
-    for i in range(4):
-        for j in range(6):
-            case_button = Button(
-                cases_frame, text=f"Case {i*6 + j + 1}", width=10, height=5)
-            case_button.grid(row=i, column=j, padx=5, pady=5)
+    images = []
+    for i in range(24):
+        image = PhotoImage(file=f'._{i+1}.png')  # Remplacez 'image_{i}.gif' par le chemin de vos images
+        images.append(image)
+ 
+    for i in range(4):  # 4 lignes
+        for j in range(6):  # 6 colonnes
+            index = i * 6 + j
+            button = Button(root, image=images[index])
+            button.grid(row=i, column=j)
+ 
+    # for i in range(4):
+    #     for j in range(6):
+    #         case_button = Button(cases_frame, text=f"Case {i*6 + j + 1}", width=10, height=5)
+    #         case_button.grid(row=i, column=j, padx=5, pady=5)
+    #         case_button.bind("<Button-1>", toggle_case)
+ 
 
-# Function to display "Not available yet" message
 def not_available():
     new_window = Toplevel(root)
     new_window.iconbitmap("QEC_Logo.ico")
