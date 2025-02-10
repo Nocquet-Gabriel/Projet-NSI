@@ -42,5 +42,7 @@ class Question:
                             personnage.cache=True
             self.answered=True
     def correspond(self):
-        if ... and self.answered==False:
-            pass
+        #vérifie qu'une question n'a pas déjà été posée
+        if self.answered==False:
+            return True
+        return False
