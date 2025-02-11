@@ -9,6 +9,9 @@ class Joueur:
         self.DifficulteChoisie=diff
         self.personnageSelectionne=personnage
 
+    def selectionPersonnage(perso:Personnage):
+        pass
+
 class Ordi:
     def __init__(self,nom:str,personnage:Personnage,diff:int) -> None:
         super().__init__(nom,randint(3,50),diff,personnage)
