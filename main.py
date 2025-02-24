@@ -67,9 +67,9 @@ def open_easy_window():
     cases_frame = Frame(easy_window)
     cases_frame.pack(pady=10)
 
-    images = []
+    images = ['Basil','Bill','Brian','Edna','Gary','Hannah','Ian','Isla','Jennifer','Joshua','Kelly','Kim','Maggie','Martine','Melvin','Mo','Natalie','Pete','Roy','Rupert','Simone','Stephen','Susan','XiaoMei']
     for i in range(24):
-        image = PhotoImage(file=f'._{i+1}.png')  # Remplacez 'image_{i}.gif' par le chemin de vos images
+        image = PhotoImage(file=f'{images[i]}.png')  # Remplacez 'image_{i}.gif' par le chemin de vos images
         images.append(image)
  
     for i in range(4):  # 4 lignes
