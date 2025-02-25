@@ -118,4 +118,6 @@ buttonMultiplayer.grid(row=2, column=0, padx=5, pady=5)
 quit_button = Button(left_frame, text="Quit", command=quit_app)
 quit_button.grid(row=3, column=0, padx=5, pady=5)
 
+
+
 root.mainloop()
