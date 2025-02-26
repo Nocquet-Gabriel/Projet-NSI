@@ -38,7 +38,7 @@ def on_button_solo():
     # Load logo
     logo = PhotoImage(file="QEC_Logo.png")
     logo_label = Label(new_window, image=logo)
-    logo_label.image = logo  # Keep a reference to avoid garbage collection
+      # Keep a reference to avoid garbage collection
     logo_label.pack(pady=10)
     Label(new_window, text="Choose your difficulty").pack(padx=20, pady=20)
 
