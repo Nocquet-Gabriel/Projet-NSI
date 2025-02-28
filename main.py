@@ -7,6 +7,11 @@ from personnage import Personnage
 from question import Question
 from plateau import Plateau
 
+
+def click(index):
+    pass
+
+
 # Interface du Menu
 root = Tk()  # create root window
 root.title("Qui-est-ce ?")
@@ -22,7 +27,7 @@ tool_bar = Frame(left_frame, width=180, height=185)
 tool_bar.grid(row=2, column=0, padx=5, pady=5)
 
 # Load logo
-image = PhotoImage(file="QEC_Logo.png")
+image = PhotoImage(file="Images_Personnages/QEC_Logo.png")
 original_image = image.subsample(3, 3)  # resize image
 Label(left_frame, image=original_image).grid(row=0, column=0, padx=5, pady=5)
 
@@ -75,7 +80,7 @@ def open_easy_window():
     for i in range(4):  # 4 lignes
         for j in range(6):  # 6 colonnes
             index = i * 6 + j
-            button = Button(root, image=imagesfinales[index])
+            button = Button(root, image=imagesfinales[index],command=click(index))
             button.grid(row=i, column=j)
     easy_window.mainloop()
  
