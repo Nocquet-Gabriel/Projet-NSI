@@ -36,7 +36,7 @@ def on_button_solo():
     new_window.iconbitmap("QEC_Logo.ico")
 
     # Load logo
-    logo = PhotoImage(file="QEC_Logo.png")
+    logo = PhotoImage(file="Images_Personnages/QEC_Logo.png")
     logo_label = Label(new_window, image=logo)
       # Keep a reference to avoid garbage collection
     logo_label.pack(pady=10)
