@@ -6,6 +6,7 @@ from case import Case
 from personnage import Personnage
 from question import Question
 from plateau import Plateau
+from tkinter import messagebox
 
 
 def click(index):
@@ -63,6 +64,11 @@ def toggle_case(event):
     else:
         button["bg"] = "SystemButtonFace"
 
+def on_image_click(button, index_image):
+    # print("Test, clique sur l'image ", index_image)
+    messagebox.showinfo("Information", "Button clicked!")
+    button.config(image=PhotoImage(file='Images_Personnages/Basil.png'))
+
 
 def open_easy_window():
     easy_window = Toplevel(root)
@@ -80,7 +86,9 @@ def open_easy_window():
     for i in range(4):  # 4 lignes
         for j in range(6):  # 6 colonnes
             index = i * 6 + j
-            button = Button(root, image=imagesfinales[index],command=click(index))
+            button = Button(root, image=imagesfinales[index])
+            button.config(command=lambda button=button, index=index: on_image_click(button, index))
+            # button.bind(lambda e: on_image_click(index))
             button.grid(row=i, column=j)
     easy_window.mainloop()
  
