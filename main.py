@@ -8,11 +8,6 @@ from question import Question
 from plateau import Plateau
 from tkinter import messagebox
 
-
-def click(index):
-    pass
-
-
 # Interface du Menu
 root = Tk()  # create root window
 root.title("Qui-est-ce ?")
