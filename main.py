@@ -1,12 +1,12 @@
 
 from tkinter import *
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk #Non Nécéssaire (non utilisé)
 from joueur import Joueur
-from case import Case
+from case import Case 
 from personnage import Personnage
 from question import Question
 from plateau import Plateau
-from tkinter import messagebox
+from tkinter import messagebox #Import pour la fenetre de vérification
 
 # Interface du Menu
 root = Tk()  # create root window
@@ -59,10 +59,12 @@ def toggle_case(event):
     else:
         button["bg"] = "SystemButtonFace"
 
+
+images = ['Basil','Bill','Brian','Edna','Gary','Hannah','Ian','Isla','Jennifer','Joshua','Kelly','Kim','Maggie','Martine','Melvin','Mo','Natalie','Pete','Roy','Rupert','Simone','Stephen','Susan','XiaoMei']
 def on_image_click(button, index_image):
     # print("Test, clique sur l'image ", index_image)
     messagebox.showinfo("Information", "Button clicked!")
-    button.config(image=PhotoImage(file='Images_Personnages/Basil.png'))
+    button.config(image=PhotoImage(file=f'Images_Personnages/{images[index_image]}.png'))
 
 
 def open_easy_window():
@@ -73,7 +75,7 @@ def open_easy_window():
     cases_frame = Frame(easy_window)
     cases_frame.pack(pady=10)
     imagesfinales=[]
-    images = ['Basil','Bill','Brian','Edna','Gary','Hannah','Ian','Isla','Jennifer','Joshua','Kelly','Kim','Maggie','Martine','Melvin','Mo','Natalie','Pete','Roy','Rupert','Simone','Stephen','Susan','XiaoMei']
+    # image list line 63
     for i in range(24):
         image = PhotoImage(file=f'Images_Personnages/{images[i]}.png')  # Remplacez 'image_{i}.gif' par le chemin de vos images
         imagesfinales.append(image)
