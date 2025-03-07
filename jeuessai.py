@@ -13,5 +13,6 @@ if a =="O" or a=="o":
     joueur2=Joueur("Ordi",9777,"Mo")
     jeu=Jeu(0,joueur1,joueur2)
     jeu.start()
-    while not joueur1.gagne & joueur2.gagne==False:
-        joueur1.poser
+    print(jeu.questions[1].caracteristiques)
+    # while not joueur1.gagne & joueur2.gagne==False:
+    #     joueur1.poser
