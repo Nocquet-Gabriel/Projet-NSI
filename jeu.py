@@ -8,7 +8,7 @@ class Jeu:
         self.plateau=None
 
     def start(self):
-#       Instanciation des questions
+       #Instanciation des questions
        q1 = Question("Est-ce une femme?", (("femme", True)))
        q2 = Question("a t-il/elle les cheveux longs?", (("cheveuxLongs", True)))
        q3 = Question("porte t-il/elle des lunettes?", (("lunettes", True)))

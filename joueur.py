@@ -6,7 +6,6 @@ class Joueur:
         self.nom=nom
         self.age=age
         self.nbPartiesGagnées=0
-        self.DifficulteChoisie=diff
         self.personnageSelectionne=personnage
 
     def selectionPersonnage(perso:Personnage):
