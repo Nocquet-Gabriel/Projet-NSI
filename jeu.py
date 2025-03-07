@@ -6,6 +6,8 @@ class Jeu:
         self.joueur1=joueur1
         self.joueur2=joueur2
         self.plateau=None
+        self.questions=[]
+        self.persos=None
 
     def start(self):
        #Instanciation des questions
@@ -40,8 +42,26 @@ class Jeu:
        q17 = Question("semble t-il/elle vieux/vieille",
                (("vieux", True), ("jeune", False)))
        q18 = Question("semble t-il/elle jeune", (("jeune", True), ("vieux", False)))
+       self.questions.append(q1)
+       self.questions.append(q2)
+       self.questions.append(q3)
+       self.questions.append(q4)
+       self.questions.append(q5)
+       self.questions.append(q6)
+       self.questions.append(q7)
+       self.questions.append(q8)
+       self.questions.append(q9)
+       self.questions.append(q10)
+       self.questions.append(q11)
+       self.questions.append(q12)
+       self.questions.append(q13)
+       self.questions.append(q14)
+       self.questions.append(q15)
+       self.questions.append(q16)
+       self.questions.append(q17)
+       self.questions.append(q18)
 # Instanciation des personnages (sous forme de dictionnaire)
-       persos={
+       self.persos={
            "basil": Personnage("Basil", False, False, False, False, False, True, False, False,
                               True, False, True, False, False, False, False, True, True, False, False),
            "bill": Personnage("Bill",False,False,False,True,False,True,False,False,True,False,True,False,False,False,False,True,True,False,False),
