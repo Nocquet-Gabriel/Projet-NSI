@@ -90,8 +90,3 @@ class Jeu:
 
            "xiao mei" : Personnage("Xiao Mei",True,True,False,False,False,True,False,False,True,False,True,False,False,False,False,True,True,False,False)
        }
-
-       basil=Personnage("Basil",False,False,False,False,False,True,False,False,
-                                   True,False,True,False,False,False,False,True,
-                                     True, False, False)
-       bill=Personnage()
