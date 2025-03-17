@@ -49,14 +49,18 @@ class Question:
         return False
     
     def personnageCorrespond(self,personnage:Personnage):
+        if type(self.caracteristiques[0]) == tuple :
+            cle = self.caracteristiques[0][0]
+            reponseAttendue=self.caracteristiques[0][1]
+        else :
             cle = self.caracteristiques[0]
             reponseAttendue=self.caracteristiques[1]
-            reponsedelordi=None
-            if personnage.caracteristiques[cle]==reponseAttendue:
-                reponsedelordi='Oui'
-                self.answered = True
-            else:
-                reponsedelordi='Non'
-                self.answered = True
-            return reponsedelordi
+        reponsedelordi=None
+        if personnage.caracteristiques[cle]==reponseAttendue:
+            reponsedelordi='Oui'
+            self.answered = True
+        else:
+            reponsedelordi='Non'
+            self.answered = True
+        return reponsedelordi
             
