@@ -49,6 +49,7 @@ class Question:
         return False
     
     def personnageCorrespond(self,personnage:Personnage):
+        # peut être un time.sleep(1) pour pas que l'ordi réponde instant 
         if type(self.caracteristiques[0]) == tuple :
             cle = self.caracteristiques[0][0]
             reponseAttendue=self.caracteristiques[0][1]
