@@ -1,4 +1,3 @@
-
 from tkinter import *
 from PIL import Image, ImageTk #Non Nécéssaire (non utilisé)
 from joueur import Joueur
@@ -29,6 +28,9 @@ Label(left_frame, image=original_image).grid(row=0, column=0, padx=5, pady=5)
 
 # Function to open a new window with a message for solo
 
+
+imagesfinales = []
+image_cachee = None
 
 def on_button_solo():
     new_window = Toplevel(root)
@@ -66,36 +68,29 @@ for i in range(len(images)):
     cache[i] = False
 
 
-def on_image_click(cases_frame, index_image):
+def on_image_click(button, index_image):
+    global imagesfinales, image_cachee
+    
     print("Test clic : ", index_image)
     print(cache)
-    # print("Test, clique sur l'image ", index_image)
-    # messagebox.showinfo("Information", "Button clicked!")
 
-    # On check si l'image est déjà cachée
+    # On vérifie si l'image est déjà cachée
     if index_image in cache and cache[index_image]:
-        button.config(image=PhotoImage(file=f'Images_Personnages/{images[index_image]}.png'), command=lambda button=button,
-                      index=index_image: on_image_click(button, index_image))
+        # Réaffiche l'image originale
+        button.config(image=imagesfinales[index_image], bg='SystemButtonFace', text="")
         cache[index_image] = False
-        
     else:
-        
-        button = Button(cases_frame, PhotoImage(file='Images_Personnages/bck_b_t.png'))
-        button.config(command=lambda cases_frame=cases_frame,
-                      index=index: on_image_click(cases_frame, index))
-        button.grid(row=0, column=0)
-        
-
-        # button.config(image=PhotoImage(file='Images_Personnages/bck_b_t.png'), command=lambda button=button,
-        #               index=index_image: on_image_click(button, index_image))
-        label = Label(button, text=images[index_image], bg='grey', fg='black')
-        label.place(relx=0.5, rely=0.5, anchor='center')
+        # Cache l'image et affiche un label avec le nom
+        button.config(image=image_cachee, bg='grey', fg='black', text=images[index_image])
         cache[index_image] = True
 
 
 
 
 def open_easy_window(parent_window):
+
+    global imagesfinales, image_cachee
+
     # Fermer la fenêtre parente
     parent_window.destroy()
     easy_window = Toplevel(root)
@@ -108,30 +103,29 @@ def open_easy_window(parent_window):
 
     cases_frame = Frame(easy_window, bg="dodgerblue")
     cases_frame.grid(row=1, column=0, padx=10, pady=10)
-    imagesfinales = []
-    # image list line 63
+
+    # Charger les images dans une liste
+    
     for i in range(24):
-        # Remplacez 'image_{i}.gif' par le chemin de vos images
         image = PhotoImage(file=f'Images_Personnages/{images[i]}.png')
         imagesfinales.append(image)
+
+    # Charger l'image de fond (cachée)
+    image_cachee = PhotoImage(file="Images_Personnages/bck_b_t.png")
+
+    # Créer les boutons en utilisant les images
     for i in range(4):  # 4 lignes
         for j in range(6):  # 6 colonnes
             index = i * 6 + j
             button = Button(cases_frame, image=imagesfinales[index])
-            button.config(command=lambda cases_frame=cases_frame,
-                          index=index: on_image_click(cases_frame, index))
+            # Utilisez une lambda pour capturer correctement la référence du bouton et de l'index
+            button.config(command=lambda btn=button, idx=index: on_image_click(btn, idx))
             button.grid(row=i, column=j)
 
     # Ajouter une commande pour fermer la fenêtre "easy_window" et réafficher "root"
     easy_window.protocol("WM_DELETE_WINDOW", lambda: (
         easy_window.destroy(), root.deiconify()))
     easy_window.mainloop()
-    # for i in range(4):
-    #     for j in range(6):
-    #         case_button = Button(cases_frame, text=f"Case {i*6 + j + 1}", width=10, height=5)
-    #         case_button.grid(row=i, column=j, padx=5, pady=5)
-    #         case_button.bind("<Button-1>", toggle_case)
- 
 
 def not_available():
     new_window = Toplevel(root)
