@@ -2,7 +2,7 @@ from personnage import Personnage
 
 
 class Question:
-    def __init__(self, question: str, caractéristiques: tuple, nbcar:int) -> None:
+    def __init__(self, question: str, caractéristiques: tuple) -> None:
         """créée l'instanciation de classe question : possède 3 attributs : une 
         question de type chaine de caractères, et les caractéristiques visées,
         sous la forme d'un tuple de tuples de la forme 
@@ -21,7 +21,7 @@ class Question:
         self.question = question
         self.caracteristiques = caractéristiques
         self.answered=False
-        self.nbcar=nbcar
+        
 
     def answer(self, reponse: bool, personnage: Personnage):
             # début de la boucle pour tous les tuples de caractéristiques
@@ -49,14 +49,19 @@ class Question:
         return False
     
     def personnageCorrespond(self,personnage:Personnage):
+        # peut être un time.sleep(1) pour pas que l'ordi réponde instant 
+        if type(self.caracteristiques[0]) == tuple :
+            cle = self.caracteristiques[0][0]
+            reponseAttendue=self.caracteristiques[0][1]
+        else :
             cle = self.caracteristiques[0]
             reponseAttendue=self.caracteristiques[1]
-            reponsedelordi=None
-            if personnage.caracteristiques[cle]==reponseAttendue:
-                reponsedelordi='Oui'
-                self.answered = True
-            else:
-                reponsedelordi='Non'
-                self.answered = True
-            return reponsedelordi
+        reponsedelordi=None
+        if personnage.caracteristiques[cle]==reponseAttendue:
+            reponsedelordi='Oui'
+            self.answered = True
+        else:
+            reponsedelordi='Non'
+            self.answered = True
+        return reponsedelordi
             
