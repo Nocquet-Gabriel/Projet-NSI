@@ -14,6 +14,6 @@ if a =="O" or a=="o":
     jeu=Jeu(0,joueur1,joueur2)
     jeu.start()
     print(jeu.questions[1].caracteristiques)
-    while not joueur1.gagne & joueur2.gagne==False:
+    while not joueur1.gagne and not joueur2.gagne:
         joueur1.PoserQuestion(jeu,0)
-        
+        b=input("END")
