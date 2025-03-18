@@ -7,6 +7,8 @@ from question import Question
 from plateau import Plateau
 from tkinter import messagebox #Import pour la fenetre de vérification
 from jeu import Jeu
+from tkinter.ttk import Combobox  # Importer Combobox depuis ttk
+from tkinter import messagebox  # Importer messagebox pour les pop-up
 
 # Interface du Menu
 root = Tk()  # create root window
@@ -92,17 +94,23 @@ def on_image_click(button, index_image):
     
 
 
-
-
 def open_easy_window(parent_window):
 
     global imagesfinales, image_cachee
+
+    # Variable pour stocker la réponse du joueur
+    player_response = None
+
+    # Fonction pour récupérer la réponse du joueur
+    def get_player_response():
+        return player_response
 
     # Fermer la fenêtre parente
     parent_window.destroy()
     easy_window = Toplevel(root)
     easy_window.iconbitmap("QEC_Logo.ico")
     easy_window.title("Solo-Easy")
+    easy_window.geometry("1500x900")
 
     # Ajouter le bouton "Quit" en haut à gauche
     quit_button = Button(easy_window, text="Quit", command=easy_window.destroy)
@@ -112,7 +120,7 @@ def open_easy_window(parent_window):
     cases_frame.grid(row=1, column=0, padx=10, pady=10)
 
     # Charger les images dans une liste
-    
+    imagesfinales.clear()  # Vider la liste au cas où
     for i in range(24):
         image = PhotoImage(file=f'Images_Personnages/{images[i]}.png')
         imagesfinales.append(image)
@@ -129,10 +137,61 @@ def open_easy_window(parent_window):
             button.config(command=lambda btn=button, idx=index: on_image_click(btn, idx))
             button.grid(row=i, column=j)
 
+    # Ajouter une zone bleue à droite des images
+    right_frame = Frame(easy_window, bg="dodgerblue", width=300, height=600)
+    right_frame.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
+
+    # Ajouter un Combobox pour les questions
+    questions = [q.question for q in jeu.questions]  # Extraire les questions de l'objet `jeu`
+    combobox_label = Label(right_frame, text="Choisissez une question :", bg="dodgerblue", fg="white", font=("Arial", 12))
+    combobox_label.pack(pady=10)
+
+    question_combobox = Combobox(right_frame, values=questions, state="readonly", font=("Arial", 10))
+    question_combobox.set("Sélectionnez une question")  # Texte par défaut
+    question_combobox.pack(pady=10, padx=10, fill="x")
+
+    # Ajouter une zone pour la réponse de l'ordinateur
+    response_label = Label(right_frame, text="Réponse de l'ordinateur :", bg="dodgerblue", fg="white", font=("Arial", 12))
+    response_label.pack(pady=10)
+
+    response_area = Label(right_frame, text="", bg="white", fg="black", font=("Arial", 10), width=30, height=5, anchor="nw", justify="left", relief="solid")
+    response_area.pack(pady=10, padx=10, fill="x")
+
+    # Ajouter une zone pour la réponse du joueur
+    player_response_label = Label(right_frame, text="Réponse du joueur :", bg="dodgerblue", fg="white", font=("Arial", 12))
+    player_response_label.pack(pady=(10, 5))  # Réduire l'espace en bas du label
+
+    # Ajouter les boutons Oui et Non
+    def handle_player_response(response):
+        nonlocal player_response  # Utiliser la variable locale pour stocker la réponse
+        # Afficher une boîte de confirmation
+        confirm = messagebox.askyesno("Confirmer ?", "Êtes-vous sûr de votre choix ?")
+        if confirm:  # Si l'utilisateur confirme
+            player_response = response  # Stocker la réponse
+            # Mettre à jour la réponse de l'ordinateur en fonction de la réponse du joueur
+            if response:
+                response_area.config(text="L'ordinateur a reçu : Oui")
+            else:
+                response_area.config(text="L'ordinateur a reçu : Non")
+            # Vous pouvez ajouter ici la logique pour interpréter la réponse
+            print(f"Réponse stockée : {player_response}")  # Debug : Afficher la réponse dans la console
+
+    button_frame = Frame(right_frame, bg="dodgerblue")  # Encadrer les boutons dans un Frame
+    button_frame.pack(pady=5)  # Réduire l'espace entre le label et les boutons
+
+    button_yes = Button(button_frame, text="Oui", command=lambda: handle_player_response(True), bg="white", fg="green", font=("Arial", 10))
+    button_yes.pack(side=LEFT, padx=5)
+
+    button_no = Button(button_frame, text="Non", command=lambda: handle_player_response(False), bg="white", fg="red", font=("Arial", 10))
+    button_no.pack(side=LEFT, padx=5)
+
     # Ajouter une commande pour fermer la fenêtre "easy_window" et réafficher "root"
     easy_window.protocol("WM_DELETE_WINDOW", lambda: (
         easy_window.destroy(), root.deiconify()))
     easy_window.mainloop()
+
+    # Retourner la réponse du joueur après la fermeture de la fenêtre
+    return get_player_response()
 
 def not_available():
     new_window = Toplevel(root)
