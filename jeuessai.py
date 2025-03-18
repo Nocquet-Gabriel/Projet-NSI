@@ -1,4 +1,3 @@
-
 from joueur import Joueur
 from case import Case 
 from personnage import Personnage
@@ -15,6 +14,4 @@ if a =="O" or a=="o":
     jeu.start()
     while not joueur1.gagne and not joueur2.gagne:
         joueur1.PoserQuestion(jeu,2)
-        
-        b=input("END")
         joueur1.gagne=True
