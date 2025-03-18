@@ -1,6 +1,7 @@
 from random import randint
 from personnage import Personnage
 from question import Question
+
 class Joueur:
     def __init__(self,nom:str,age:int,personnage:str) -> None:
         self.nom=nom
@@ -9,6 +10,9 @@ class Joueur:
         self.personnageSelectionne=personnage
         self.gagne=False
 
-    def PoserQuestion(self, jeu, q):
-        print(jeu.questions[q].question)
+    def PoserQuestion(self, jeu, q:int):
+        question= jeu.questions[q]
+        print(question.question)
+        reponse = question.PersonnageCorrespond(self.personnageSelectionne)
+        print(reponse)
         
