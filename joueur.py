@@ -13,6 +13,6 @@ class Joueur:
     def PoserQuestion(self, jeu, q:int):
         question= jeu.questions[q]
         print(question.question)
-        reponse = question.personnageCorrespond(jeu.persos[self.personnageSelectionne.lower()])
+        reponse = question.PersonnageCorrespond(self.personnageSelectionne)
         print(reponse)
         
