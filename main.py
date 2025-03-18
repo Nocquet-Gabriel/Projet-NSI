@@ -6,6 +6,7 @@ from personnage import Personnage
 from question import Question
 from plateau import Plateau
 from tkinter import messagebox #Import pour la fenetre de vérification
+from jeu import Jeu
 
 # Interface du Menu
 root = Tk()  # create root window
@@ -60,6 +61,8 @@ def toggle_case(event):
     else:
         button["bg"] = "SystemButtonFace"
 
+jeu = Jeu(1, Joueur("Joueur1",631565,"Basil"), Joueur("Joueur2",631565,"Basil"))
+jeu.start() #On lance le jeu
 
 images = ['Basil','Bill','Brian','Edna','Gary','Hannah','Ian','Isla','Jennifer','Joshua','Kelly','Kim','Maggie','Martine','Melvin','Mo','Natalie','Pete','Roy','Rupert','Simone','Stephen','Susan','XiaoMei']
 cache = {}
@@ -70,7 +73,7 @@ for i in range(len(images)):
 
 def on_image_click(button, index_image):
     global imagesfinales, image_cachee
-    
+
     print("Test clic : ", index_image)
     print(cache)
 
@@ -79,10 +82,14 @@ def on_image_click(button, index_image):
         # Réaffiche l'image originale
         button.config(image=imagesfinales[index_image], bg='SystemButtonFace', text="")
         cache[index_image] = False
+        jeu.persos[images[index_image].lower()].cache = False
+
     else:
         # Cache l'image et affiche un label avec le nom
         button.config(image=image_cachee, bg='grey', fg='black', text=images[index_image])
         cache[index_image] = True
+        jeu.persos[images[index_image].lower()].cache = True
+    
 
 
 
