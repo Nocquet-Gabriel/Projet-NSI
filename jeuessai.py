@@ -13,7 +13,8 @@ if a =="O" or a=="o":
     joueur2=Joueur("Ordi",9777,"Mo")
     jeu=Jeu(0,joueur1,joueur2)
     jeu.start()
-    print(jeu.questions[1].caracteristiques)
     while not joueur1.gagne and not joueur2.gagne:
-        joueur1.PoserQuestion(jeu,0)
+        joueur1.PoserQuestion(jeu,2)
+        
         b=input("END")
+        joueur1.gagne=True
