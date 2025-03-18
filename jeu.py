@@ -108,5 +108,5 @@ class Jeu:
 
            "susan" : Personnage("Susan", True,False,False,False,True,False,False,False,True,False,True,False,False,False,False,True,True,False,False),
 
-           "xiao mei" : Personnage("Xiao Mei",True,True,False,False,False,True,False,False,True,False,True,False,False,False,False,True,True,False,False)
+           "xiaomei" : Personnage("Xiao Mei",True,True,False,False,False,True,False,False,True,False,True,False,False,False,False,True,True,False,False)
        }
