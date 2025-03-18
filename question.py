@@ -42,6 +42,7 @@ class Question:
                         if reponse == True and personnage.caracteristiques[cle]:
                             personnage.cache=True
             self.answered=True
+            
     def correspond(self):
         #vérifie qu'une question n'a pas déjà été posée
         if self.answered==False:
