@@ -1,6 +1,7 @@
 from random import randint
 from personnage import Personnage
 from question import Question
+from jeu import Jeu
 
 class Joueur:
     def __init__(self,nom:str,age:int,personnage:str,Ordi=False) -> None:
