@@ -15,14 +15,14 @@ class Joueur:
     def PoserQuestion(self, jeu, q:int):
         if self.ordi == False:
             question= jeu.questions[q]
-            print(question.question)
+            # print(question.question)
             reponse = question.personnageCorrespond(jeu.persos[self.personnageSelectionne.lower()])
             print(reponse)
         else:
             question= jeu.questions[q]
             print(question.question)
-            a=input("Votre Réponse (Oui/Non): ")
-            if a=="Oui" or a=="oui":
+            reponse=input("Votre Réponse (Oui/Non): ")
+            if reponse=="Oui" or reponse=="oui":
                 for key in jeu.persos.keys():
                     perso = jeu.persos[key]
                     question.answer(True,perso)
