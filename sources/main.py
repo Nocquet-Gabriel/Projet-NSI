@@ -194,6 +194,7 @@ def open_easy_window(parent_window):
     button_no = Button(button_frame, text="Non", command=lambda: handle_player_response(False), bg="white", fg="red", font=("Arial", 10))
     button_no.pack(side=LEFT, padx=5)
 
+
     # Ajouter une commande pour fermer la fenêtre "easy_window" et réafficher "root"
     easy_window.protocol("WM_DELETE_WINDOW", lambda: (
         easy_window.destroy(), root.deiconify()))
