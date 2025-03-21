@@ -101,9 +101,18 @@ def open_easy_window(parent_window):
     # Variable pour stocker la réponse du joueur
     player_response = None
 
+    # Variable pour stocker la question sélectionnée
+    selected_question = None
+
     # Fonction pour récupérer la réponse du joueur
     def get_player_response():
         return player_response
+
+    # Fonction pour récupérer la question sélectionnée
+    def get_selected_question():
+        nonlocal selected_question
+        selected_question = question_combobox.get()
+        return selected_question
 
     # Fermer la fenêtre parente
     parent_window.destroy()
@@ -190,8 +199,8 @@ def open_easy_window(parent_window):
         easy_window.destroy(), root.deiconify()))
     easy_window.mainloop()
 
-    # Retourner la réponse du joueur après la fermeture de la fenêtre
-    return get_player_response()
+    # Retourner la réponse du joueur et la question sélectionnée après la fermeture de la fenêtre
+    return get_player_response(), get_selected_question()
 
 def not_available():
     new_window = Toplevel(root)
