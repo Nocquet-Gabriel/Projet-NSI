@@ -39,10 +39,10 @@ def on_button_solo():
     new_window = Toplevel(root)
     new_window.title("Solo")
     new_window.geometry("700x600")  # resize window
-    new_window.iconbitmap("QEC_Logo.ico")
+    new_window.iconbitmap("CestQui_Logo.ico")
 
     # Load logo
-    logo = PhotoImage(file="Images_Personnages/QEC_Logo.png")
+    logo = PhotoImage(file="CestQui_Logo.png")
     new_window.logo = logo  # Keep a reference to avoid garbage collection
     logo_label = Label(new_window, image=logo)
     logo_label.pack(pady=10)
@@ -117,7 +117,7 @@ def open_easy_window(parent_window):
     # Fermer la fenêtre parente
     parent_window.destroy()
     easy_window = Toplevel(root)
-    easy_window.iconbitmap("QEC_Logo.ico")
+    easy_window.iconbitmap("CestQui_Logo.ico")
     easy_window.title("Solo-Easy")
     easy_window.geometry("1500x900")
 
@@ -205,7 +205,7 @@ def open_easy_window(parent_window):
 
 def not_available():
     new_window = Toplevel(root)
-    new_window.iconbitmap("QEC_Logo.ico")
+    new_window.iconbitmap("CestQui_Logo.ico")
     new_window.title("Not available")
     Label(new_window, text="Not available yet").pack(padx=20, pady=20)
 
@@ -221,7 +221,7 @@ def quit_app():
 def on_button_multiplayer():
     new_window = Toplevel(root)
     new_window.title("Multiplayer")
-    new_window.iconbitmap("QEC_Logo.ico")
+    new_window.iconbitmap("CestQui_Logo.ico")
     Label(new_window, text="Multiplayer not available yet").pack(padx=20, pady=20)
 
 
