@@ -13,7 +13,7 @@ from tkinter import messagebox  # Importer messagebox pour les pop-up
 # Interface du Menu
 root = Tk()  # create root window
 root.title("Qui-est-ce ?")
-root.iconbitmap("QEC_Logo.ico")
+root.iconbitmap("CestQui_Logo.ico")
 root.config(bg="dodgerblue")
 
 # Create Frame widget
