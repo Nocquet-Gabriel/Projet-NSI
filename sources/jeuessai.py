@@ -17,10 +17,5 @@ if a =="O" or a=="o":
         joueur1.PoserQuestion(jeu,2)
         time.sleep(2)
         joueur2.PoserQuestion(jeu,8)
-        b=input("END")
-        joueur1.gagne=True
     print(jeu.questions[1].caracteristiques)
-    while not joueur1.gagne and not joueur2.gagne:
-        joueur1.PoserQuestion(jeu,0)
-        b=input("END")
         

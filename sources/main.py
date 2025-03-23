@@ -112,12 +112,13 @@ def open_easy_window(parent_window):
     def get_selected_question():
         nonlocal selected_question
         selected_question = question_combobox.get()
+        print("Question selectionnée:",selected_question)
         return selected_question
 
     # Fermer la fenêtre parente
     parent_window.destroy()
     easy_window = Toplevel(root)
-    # easy_window.iconbitmap("Logo.ico")
+    easy_window.iconbitmap("sources/logo.ico")
     easy_window.title("Solo-Easy")
     easy_window.geometry("1500x900")
 
@@ -193,11 +194,19 @@ def open_easy_window(parent_window):
 
     button_no = Button(button_frame, text="Non", command=lambda: handle_player_response(False), bg="white", fg="red", font=("Arial", 10))
     button_no.pack(side=LEFT, padx=5)
+    button_question_confirm = Button(button_frame, text = "Confirmer la Question Selectionnée", command=lambda: get_selected_question(), bg="white", fg="blue", font=("Arial",10))
+    button_question_confirm.pack(side=LEFT, padx=5)
 
 
     # Ajouter une commande pour fermer la fenêtre "easy_window" et réafficher "root"
     easy_window.protocol("WM_DELETE_WINDOW", lambda: (
         easy_window.destroy(), root.deiconify()))
+    
+    # Moteur du Jeu
+
+
+
+
     easy_window.mainloop()
 
     # Retourner la réponse du joueur et la question sélectionnée après la fermeture de la fenêtre
@@ -235,7 +244,5 @@ buttonMultiplayer.grid(row=2, column=0, padx=5, pady=5)
 
 quit_button = Button(left_frame, text="Quit", command=quit_app)
 quit_button.grid(row=3, column=0, padx=5, pady=5)
-
-
 
 root.mainloop()
