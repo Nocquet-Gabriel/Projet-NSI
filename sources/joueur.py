@@ -17,19 +17,18 @@ class Joueur:
             question= jeu.questions[q]
             # print(question.question)
             reponse = question.personnageCorrespond(jeu.persos[self.personnageSelectionne.lower()])
-            print(reponse)
-        else:
-            question= jeu.questions[q]
-            print(question.question)
-            reponse=input("Votre Réponse (Oui/Non): ")
-            if reponse=="Oui" or reponse=="oui":
-                for key in jeu.persos.keys():
-                    perso = jeu.persos[key]
-                    question.answer(True,perso)
-            else:
-                for key,val in jeu.persos.items():
-                    perso = jeu.persos[key]
-                    question.answer(False,perso)
+            return reponse
+    
+    def ordirepondre(jeu,reponse,question):
+        if reponse:
+            for key in jeu.persos.keys():
+                perso = jeu.persos[key]
+                question.answer(True, perso)
+        elif not reponse:
+            for key,val in jeu.persos.items():
+                perso = jeu.persos[key]
+                question.answer(False,perso)
+            
     
 
     def DevinerPersonnage(self, jeu:Jeu, personnage:Personnage, joueur2): # Quoi qu'il arrive, cette fonction met fin au jeu.

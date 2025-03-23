@@ -10,6 +10,8 @@ from jeu import Jeu
 from tkinter.ttk import Combobox  # Importer Combobox depuis ttk
 from tkinter import messagebox  # Importer messagebox pour les pop-up
 import os
+import time
+from random import randint
 # Interface du Menu
 root = Tk()  # create root window
 root.title("Qui-est-ce ?")
@@ -103,7 +105,7 @@ def open_easy_window(parent_window):
 
     # Variable pour stocker la question sélectionnée
     selected_question = None
-
+    active_question = False
     # Fonction pour récupérer la réponse du joueur
     def get_player_response():
         return player_response
@@ -114,6 +116,13 @@ def open_easy_window(parent_window):
         selected_question = question_combobox.get()
         print("Question selectionnée:",selected_question)
         return selected_question
+    
+    def get_question_use(actif=None):
+        if actif == False or actif == True:
+            get_selected_question()
+            active_question = actif
+
+    
 
     # Fermer la fenêtre parente
     parent_window.destroy()
@@ -170,6 +179,19 @@ def open_easy_window(parent_window):
     # Ajouter une zone pour la réponse du joueur
     player_response_label = Label(right_frame, text="Réponse du joueur :", bg="dodgerblue", fg="white", font=("Arial", 12))
     player_response_label.pack(pady=(10, 5))  # Réduire l'espace en bas du label
+    
+    def poserquestioninterface(question:str):
+        response_area.config(text=f"Vous demandez : {question}")
+    
+    def poserquestioninterfaceordi(question: str):
+        response_area.config(text=f"l'ordi vous demande : {question}")
+
+    
+    def repondrequestioninterface(reponse:str):
+        response_area.config(text=f"l'ordinateur vous répond : {reponse}")
+
+
+
 
     # Ajouter les boutons Oui et Non
     def handle_player_response(response):
@@ -194,7 +216,7 @@ def open_easy_window(parent_window):
 
     button_no = Button(button_frame, text="Non", command=lambda: handle_player_response(False), bg="white", fg="red", font=("Arial", 10))
     button_no.pack(side=LEFT, padx=5)
-    button_question_confirm = Button(button_frame, text = "Confirmer la Question Selectionnée", command=lambda: get_selected_question(), bg="white", fg="blue", font=("Arial",10))
+    button_question_confirm = Button(button_frame, text = "Confirmer la Question Selectionnée", command=lambda: get_question_use(True), bg="white", fg="blue", font=("Arial",10))
     button_question_confirm.pack(side=LEFT, padx=5)
 
 
@@ -202,13 +224,36 @@ def open_easy_window(parent_window):
     easy_window.protocol("WM_DELETE_WINDOW", lambda: (
         easy_window.destroy(), root.deiconify()))
     
-    # Moteur du Jeu
-
-    # while not jeu.joueur1.gagne and jeu.joueur2.gagne == False :
-
-
-
     easy_window.mainloop()
+    # Moteur du jeu
+    while not jeu.joueur1.gagne and jeu.joueur2.gagne == False:
+        # On va chercher la question une fois que le joueur a confirmé sa question
+        if active_question:
+            clequestion = get_selected_question()
+            objetquestion = None
+            for question in jeu.questions:
+                if question.question == clequestion:
+                    objetquestion = question
+            # on affiche la question posée
+            poserquestioninterface(objetquestion.question)
+            # délai pour éviter la réponse quasi instantanée de l'ordi
+            reponse = jeu.joueur1.PoserQuestion(
+                jeu, objetquestion)  # on pose la question à l'ordi
+            repondrequestioninterface(reponse)
+            active_question = None
+            # c'est au tour de l'ordi
+            bonnequestion = False
+            q = None
+            while not bonnequestion:
+                q = jeu.questions[randint(0, 17)]
+                if q.correspond():
+                    bonnequestion = True
+            poserquestioninterfaceordi(q.question)
+            while player_response == None:
+                # permet d'éviter de retourner dans la boucle (temps de réponse)
+                time.sleep(0.5)
+            jeu.joueur2.ordirepondre(jeu, player_response, q)
+
 
     # Retourner la réponse du joueur et la question sélectionnée après la fermeture de la fenêtre
     return get_player_response(), get_selected_question()
