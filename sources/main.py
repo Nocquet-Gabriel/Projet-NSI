@@ -204,6 +204,7 @@ def open_easy_window(parent_window):
     
     # Moteur du Jeu
 
+    # while not jeu.joueur1.gagne and jeu.joueur2.gagne == False :
 
 
 

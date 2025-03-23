@@ -30,4 +30,17 @@ class Joueur:
                 for key,val in jeu.persos.items():
                     perso = jeu.persos[key]
                     question.answer(False,perso)
-                    
+    
+
+    def DevinerPersonnage(self, jeu:Jeu, personnage:Personnage, joueur2): # Quoi qu'il arrive, cette fonction met fin au jeu.
+        """Quoi qu'il arrive, cette fonction met fin au jeu, elle permet de demander au joueur adverse si 
+        le personnage à deviner est bien celui donné en paramètre. le joueur gagne si c'est le bon personnage,
+        et perd si ce n'est pas le bon"""
+        question = f"est-ce {personnage.nom} ?"
+        reponse = None
+        if joueur2.personnageSelectionne == personnage.nom:
+            reponse = 'Oui'
+            self.gagne = True # cet attribut Met fin au jeu, le joueur a gagné
+        else :
+            reponse = 'Non'
+            joueur2.gagne = True #cet attribut met fin au jeu, le joueur a perdu
