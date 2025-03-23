@@ -13,8 +13,7 @@ import os
 # Interface du Menu
 root = Tk()  # create root window
 root.title("Qui-est-ce ?")
-# logo = BitmapImage("Logo.ico")
-# root.iconbitmap(logo)
+root.iconbitmap("sources/logo.ico")
 root.config(bg="dodgerblue")
 
 # Create Frame widget
@@ -26,7 +25,7 @@ tool_bar = Frame(left_frame, width=180, height=185)
 tool_bar.grid(row=2, column=0, padx=5, pady=5)
 
 # Load logo
-image = PhotoImage(file="Logo.png")
+image = PhotoImage(file="sources/logo.png")
 original_image = image.subsample(3, 3)  # resize image
 Label(left_frame, image=original_image).grid(row=0, column=0, padx=5, pady=5)
 
@@ -39,11 +38,11 @@ image_cachee = None
 def on_button_solo():
     new_window = Toplevel(root)
     new_window.title("Solo")
-    new_window.geometry("700x600")  # resize window
+    new_window.geometry("1920x1080")  # resize window
     # new_window.iconbitmap("Logo.ico")
 
     # Load logo
-    logo = PhotoImage(file="Logo.png")
+    logo = PhotoImage(file="sources/logo.png")
     new_window.logo = logo  # Keep a reference to avoid garbage collection
     logo_label = Label(new_window, image=logo)
     logo_label.pack(pady=10)
@@ -132,11 +131,11 @@ def open_easy_window(parent_window):
     # Charger les images dans une liste
     imagesfinales.clear()  # Vider la liste au cas où
     for i in range(24):
-        image = PhotoImage(file=f'Images_Personnages/{images[i]}.png')
+        image = PhotoImage(file=f'sources/Images_Personnages/{images[i]}.png')
         imagesfinales.append(image)
 
     # Charger l'image de fond (cachée)
-    image_cachee = PhotoImage(file="Images_Personnages/bck_b_t.png")
+    image_cachee = PhotoImage(file="sources/Images_Personnages/bck_b_t.png")
 
     # Créer les boutons en utilisant les images
     for i in range(4):  # 4 lignes
@@ -206,7 +205,7 @@ def open_easy_window(parent_window):
 
 def not_available():
     new_window = Toplevel(root)
-    # new_window.iconbitmap("Logo.ico")
+    new_window.iconbitmap("sources/logo.ico")
     new_window.title("Not available")
     Label(new_window, text="Not available yet").pack(padx=20, pady=20)
 
@@ -222,7 +221,7 @@ def quit_app():
 def on_button_multiplayer():
     new_window = Toplevel(root)
     new_window.title("Multiplayer")
-    # new_window.iconbitmap("Logo.ico")
+    new_window.iconbitmap("sources/logo.ico")
     Label(new_window, text="Multiplayer not available yet").pack(padx=20, pady=20)
 
 
