@@ -227,13 +227,16 @@ def open_easy_window(parent_window):
     easy_window.mainloop()
     # Moteur du jeu
     while not jeu.joueur1.gagne and jeu.joueur2.gagne == False:
+        print("Moteur du jeu lancé")
         # On va chercher la question une fois que le joueur a confirmé sa question
         if active_question:
+            print("Question active")
             clequestion = get_selected_question()
             objetquestion = None
             for question in jeu.questions:
                 if question.question == clequestion:
                     objetquestion = question
+                    print('Objet Question bien trouvé')
             # on affiche la question posée
             poserquestioninterface(objetquestion.question)
             # délai pour éviter la réponse quasi instantanée de l'ordi
